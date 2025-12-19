@@ -85,6 +85,15 @@
                     </div>
                 </div>
             </div>
+            <div class="subBox">
+                <div class="content">
+                    <img src="logo-curling-h.png" alt="Curli">
+                    <div class="description">
+                        <h3>Curli</h3>
+                        <p>Curli is a mobile curling simulator.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
