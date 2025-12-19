@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f8f9fa;
+    padding: 2rem;
+}
+
+.parent {
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+.parent img {
+    max-height: 25vh;
+    width: auto;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+.subsidiaries {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.subsidiaries .subBox {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    border: none;
+    position: relative;
+    height: 280px;
+}
+
+.subsidiaries .subBox:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.content {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.subBox img {
+    max-width: 150px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.description {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1.5rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.subBox:hover .description,
+.subBox:focus-within .description {
+    transform: translateY(0);
+}
+
+.subBox:hover img,
+.subBox:focus-within img {
+    transform: translateY(-10px);
+}
+
+.description h3 {
+    margin: 0 0 0.5rem 0;
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+.description p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #666;
+    font-weight: 300;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+    
+    .subsidiaries {
+        grid-template-columns: 1fr;
+    }
+    
+    .parent {
+        margin-bottom: 2rem;
+    }
+    
+    .subBox img {
+        max-width: 120px;
+    }
+    
+    /* For touch devices */
+    .description {
+        transform: translateY(100%);
+    }
+    
+    .subBox:active .description {
+        transform: translateY(0);
+    }
+}
+
+/* Ensure the hover effect works properly on touch devices */
+@media (hover: none) {
+    .description {
+        transform: translateY(100%);
+    }
+    
+    .subBox:active .description {
+        transform: translateY(0);
+    }
+}
