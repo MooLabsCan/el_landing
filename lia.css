@@ -142,3 +142,82 @@ body {
         transform: translateY(0);
     }
 }
+/* ==== Dynamic Deep Glossy Theme & Loader (appended) ==== */
+
+:root {
+    --gold-1: #ffd56b;
+    --gold-2: #f1c40f;
+    --gold-3: #a07000;
+    --ink-1: #0b0f17;
+    --ink-2: #0a0e1a;
+    --ink-3: #090a10;
+}
+
+body {
+    background:
+        radial-gradient(1200px 600px at 120% -10%, rgba(255, 213, 107, 0.14), transparent 60%),
+        radial-gradient(800px 500px at -20% 120%, rgba(241, 196, 15, 0.08), transparent 60%),
+        linear-gradient(135deg, var(--ink-1) 0%, var(--ink-2) 45%, var(--ink-3) 100%);
+    color: #eaeaea;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Moving glossy sheen overlay */
+body::before {
+    content: "";
+    position: fixed;
+    inset: -10% -10% -10% -10%;
+    background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.06) 50%, transparent 70%);
+    mix-blend-mode: screen;
+    pointer-events: none;
+    animation: sweep 12s linear infinite;
+}
+
+@keyframes sweep {
+    0% { transform: translateX(-15%) translateY(-10%) rotate(0.001deg); }
+    50% { transform: translateX(15%) translateY(10%) rotate(0.001deg); }
+    100% { transform: translateX(-15%) translateY(-10%) rotate(0.001deg); }
+}
+
+/* Headline tint for dark bg */
+.parent h1 { color: var(--gold-1); letter-spacing: 0.5px; }
+
+/* Page reveal */
+.page { opacity: 0; transition: opacity .6s ease .2s; }
+.page.show { opacity: 1; }
+
+/* Loader overlay */
+.loader {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background:
+        radial-gradient(60% 60% at 50% 40%, rgba(255, 215, 107, 0.06), rgba(0,0,0,0) 70%),
+        #05060a;
+    z-index: 9999;
+    transition: opacity .6s ease, visibility 0s linear .6s;
+}
+.loader.hide { opacity: 0; visibility: hidden; }
+
+.coin-wrap { filter: drop-shadow(0 20px 30px rgba(0,0,0,.6)) drop-shadow(0 0 70px rgba(255,213,107,.18)); }
+
+.coin { width: 180px; height: 180px; animation: coinSpin 2.8s cubic-bezier(.4,.1,.2,1) infinite; transform-origin: 50% 50%; }
+
+@keyframes coinSpin {
+    0%   { transform: rotateZ(0deg) rotateY(0deg); }
+    50%  { transform: rotateZ(180deg) rotateY(180deg); }
+    100% { transform: rotateZ(360deg) rotateY(360deg); }
+}
+
+/* Respect user prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    body::before { animation: none; }
+    .coin { animation: none; }
+    .page { transition: none; }
+    .loader { transition: none; }
+}
+
+/* Slightly darker cards on dark background */
+.subsidiaries .subBox { background: rgba(255,255,255,0.9); }
